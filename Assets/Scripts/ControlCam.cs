@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ControlCam : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Jugador;
+    public Vector3 offset;
+
     void Start()
+    {
+        offset = transform.position - Jugador.transform.position;
+    }
+
+    
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        transform.position = Jugador.transform.position + offset;
     }
 }
