@@ -20,33 +20,14 @@ public class ControlJgdr : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCollider = GetComponent<CapsuleCollider>();
 
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        //rb.useGravity = gravedad;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;        
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
         
     }
     void Update()
     {
         MoverJgdr();
-        SaltarJgdr();
-        
-        /*if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && (TocandoPiso || Mathf.Abs(rb.velocity.x) > 0.01f))
-        {
-            direccionMovto = Input.GetKey(KeyCode.A) ? -1 : 1;
-        }
-
-        else
-        {
-            if (TocandoPiso || rb.velocity.magnitude < 0.01f)
-            {
-                direccionMovto = 0;
-            }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.W) && TocandoPiso)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, CalcularVelSaltoVert());
-        }*/
+        SaltarJgdr();              
                 
     }
 
@@ -75,9 +56,18 @@ public class ControlJgdr : MonoBehaviour
     {
         TocandoPiso = true;
     }
-    float CalcularVelSaltoVert()
+
+    public void OnTriggerEnter(Collider other)
     {
-        return Mathf.Sqrt(2 * AlturaSalto * gravedad);
+        if (other.gameObject.CompareTag("SwitchLuz1"))
+        {
+
+        }
+
+        if (other.gameObject.CompareTag("Obstaculo"))
+        {
+            Time.timeScale = 0.0f;
+        }
     }
 
 }

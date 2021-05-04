@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SwitchLuz1
+  - SwitchLuz2
+  - ZonaGanar
+  - Obstaculo
   layers:
   - Default
   - TransparentFX
