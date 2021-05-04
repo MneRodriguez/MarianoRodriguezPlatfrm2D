@@ -14,7 +14,9 @@ public class ControlJgdr : MonoBehaviour
     public CapsuleCollider mainCollider;
 
     public bool TocandoPiso = false;
-    
+
+
+    public Light Luz1, Luz1b, Luz2;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,7 +24,19 @@ public class ControlJgdr : MonoBehaviour
 
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;        
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        
+
+        GameObject LuzPrender1 = GameObject.FindWithTag("LuzAencender1");
+        GameObject LuzPrender1b = GameObject.FindWithTag("LuzAencender1b");
+        GameObject LuzPrender2= GameObject.FindWithTag("LuzAencender2");
+
+        Luz1 = LuzPrender1.GetComponent<Light>();
+        Luz1b = LuzPrender1b.GetComponent<Light>();
+        Luz2 = LuzPrender2.GetComponent<Light>();
+
+        Luz1.enabled = false;
+        Luz1b.enabled = false;
+        Luz2.enabled = false;
+
     }
     void Update()
     {
@@ -61,13 +75,20 @@ public class ControlJgdr : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SwitchLuz1"))
         {
-
+            Luz1.enabled = true;
+            Luz1b.enabled = true;
+        }
+        else if (other.gameObject.CompareTag("SwitchLuz2"))
+        {
+            Luz2.enabled = true;
         }
 
         if (other.gameObject.CompareTag("Obstaculo"))
         {
             Time.timeScale = 0.0f;
         }
+
+
     }
 
 }

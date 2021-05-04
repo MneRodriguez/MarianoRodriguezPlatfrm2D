@@ -8,6 +8,9 @@ TagManager:
   - SwitchLuz2
   - ZonaGanar
   - Obstaculo
+  - LuzAencender1
+  - LuzAencender1b
+  - LuzAencender2
   layers:
   - Default
   - TransparentFX
