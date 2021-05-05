@@ -15,15 +15,22 @@ public class ControlJgdr : MonoBehaviour
 
     public bool TocandoPiso = false;
 
+    
 
     public Light Luz1, Luz1b, Luz2;
     void Start()
     {
+        
+        
         rb = GetComponent<Rigidbody>();
         mainCollider = GetComponent<CapsuleCollider>();
 
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;        
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        
+        rb.constraints = RigidbodyConstraints.FreezeRotationX;  // CON ESTOS 3 QUISE PREVENIR QUE LA CAPSULA NO SE INCLINE (LO QUE ATRAE A LA CAM)
+        rb.constraints = RigidbodyConstraints.FreezeRotationY;
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
 
         GameObject LuzPrender1 = GameObject.FindWithTag("LuzAencender1");
         GameObject LuzPrender1b = GameObject.FindWithTag("LuzAencender1b");
@@ -84,6 +91,11 @@ public class ControlJgdr : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Obstaculo"))
+        {
+            Time.timeScale = 0.0f;
+        }
+
+        if (other.gameObject.CompareTag("ZonaGanar"))
         {
             Time.timeScale = 0.0f;
         }
